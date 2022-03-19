@@ -5,29 +5,15 @@ import propTypes from 'prop-types'
 
 export default function Button(props) {
     const className = [props.className]
-    // eslint-disable-next-line default-case
-    switch (props) {
-        case props.isPrimary:
-            className.push("btn-primary")
-            break
-        case props.isLarge:
-            className.push("btn-lg")
-            break
-        case props.isSmall:
-            className.push("btn-sm")
-            break
-        case props.isBlock:
-            className.push("btn-block")
-            break
-        case props.hasShadow:
-            className.push("btn-shadow")
-            break
-    }   
+    if(props.isPrimary) className.push("btn-primary")
+    if(props.isLarge) className.push("btn-large")
+    if(props.isSmall) className.push("btn-small")
+    if(props.isBlock) className.push("btn-block")
+    if(props.hasShadow) className.push("btn-shadow")
+
     const onClick = () => {
-        if(props.onClick) {
-            props.onClick()
-        }
-    }
+        if(props.onClick) props.onClick();
+    };
 
     if(props.isDisabled || props.isLoading) {
         if(props.isDisabled) {
@@ -78,7 +64,9 @@ Button.propTypes = {
     target: propTypes.string,
     href: propTypes.string,
     className: propTypes.string,
-    isDisabled: propTypes.bool, 
+    isPrimary: propTypes.bool,
+    isDisabled: propTypes.bool,
+    isLarge: propTypes.bool,
     isLoading: propTypes.string, 
     isSmall: propTypes.string, 
     isBlock: propTypes.string, 
